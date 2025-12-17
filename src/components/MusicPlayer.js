@@ -99,7 +99,7 @@ const MusicPlayer = () => {
         preload="metadata"
         volume={0.4}
       >
-        <source src={`/audio/christmas-music.mp3?v=${audioVersion}`} type="audio/mpeg" />
+        <source src={`${process.env.PUBLIC_URL || ''}/audio/christmas-music.mp3?v=${audioVersion}`} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
       
