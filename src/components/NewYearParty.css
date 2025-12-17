@@ -1,0 +1,450 @@
+.goals-section {
+  margin: 40px 0;
+  width: 100%;
+}
+
+.waiting-section {
+  text-align: center;
+  padding: 60px 40px;
+  margin: 40px 0;
+}
+
+.waiting-icon {
+  font-size: 80px;
+  margin-bottom: 30px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.waiting-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #ffd700;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+}
+
+.waiting-text {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255, 250, 250, 0.9);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.sparkle {
+  font-size: 40px;
+  margin-top: 30px;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.intro-text {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  line-height: 1.8;
+  color: rgba(255, 250, 250, 0.95);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.goals-heading {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffd700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.goals-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.goal-item:last-child {
+  border-bottom: none;
+}
+
+.goal-item:hover {
+  padding-left: 10px;
+  color: #ffd700;
+}
+
+.goal-item.checked {
+  color: #ffd700;
+}
+
+.checkmark {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 50%;
+  font-size: 18px;
+  color: #ffd700;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.goal-item.checked .checkmark {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+}
+
+.goal-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  line-height: 1.8;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 250, 250, 0.95);
+  transition: color 0.3s ease;
+}
+
+.goal-item.checked .goal-text {
+  color: #ffd700;
+}
+
+.share-prompt {
+  margin: 40px 0;
+  padding: 30px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.prompt-text {
+  color: rgba(255, 250, 250, 0.95);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  line-height: 1.8;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  margin: 0 0 25px 0;
+}
+
+
+.contact-info {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.contact-text {
+  color: #ffd700;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 0 15px 0;
+}
+
+.contact-details {
+  color: rgba(255, 250, 250, 0.9);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.8;
+  margin: 10px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.contact-link {
+  color: #ffd700;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #ffed4e;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.timer-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(196, 30, 58, 0.1));
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 0;
+  text-align: center;
+}
+
+.timer-heading {
+  color: #ffd700;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+}
+
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.timer-box {
+  background: rgba(255, 250, 250, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  padding: 20px 15px;
+  min-width: 80px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.timer-box:hover {
+  background: rgba(255, 250, 250, 0.15);
+  border-color: rgba(255, 215, 0, 0.8);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+}
+
+.timer-value {
+  color: #ffd700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.timer-label {
+  color: rgba(255, 250, 250, 0.8);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.timer-separator {
+  color: #ffd700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.timer-message {
+  margin-top: 20px;
+  color: rgba(255, 250, 250, 0.9);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-style: italic;
+}
+
+.new-year-wish {
+  margin-top: 30px;
+  font-style: italic;
+  color: #ffd700;
+  text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .waiting-section {
+    padding: 40px 20px;
+    margin: 30px 0;
+  }
+
+  .waiting-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+
+  .waiting-heading {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 15px;
+  }
+
+  .waiting-text {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  .sparkle {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+  .goals-section {
+    margin: 30px 0;
+  }
+
+  .goals-heading {
+    margin-bottom: 25px;
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+  }
+
+  .goal-item {
+    padding: 18px 0;
+  }
+
+  .checkmark {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    margin-right: 15px;
+  }
+
+  .goal-text {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+  }
+
+  .share-prompt {
+    margin: 30px 0;
+    padding: 20px;
+  }
+
+  .prompt-text {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+  }
+
+  .timer-section {
+    margin: 30px 0;
+    padding: 20px;
+  }
+
+  .timer-heading {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-bottom: 20px;
+  }
+
+  .timer-container {
+    gap: 10px;
+  }
+
+  .timer-box {
+    padding: 15px 10px;
+    min-width: 70px;
+  }
+
+  .timer-value {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .timer-label {
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+  }
+
+  .timer-separator {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .timer-message {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    margin-top: 15px;
+  }
+
+  .contact-info {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .goals-section {
+    margin: 25px 0;
+  }
+
+  .goal-item {
+    padding: 15px 0;
+  }
+
+  .checkmark {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    margin-right: 12px;
+  }
+
+  .goal-text {
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+  }
+
+  .share-prompt {
+    margin: 25px 0;
+    padding: 15px;
+  }
+
+  .timer-section {
+    margin: 25px 0;
+    padding: 15px;
+  }
+
+  .timer-container {
+    gap: 8px;
+  }
+
+  .timer-box {
+    padding: 12px 8px;
+    min-width: 60px;
+  }
+
+  .timer-value {
+    font-size: clamp(1.3rem, 7vw, 2rem);
+  }
+
+  .timer-label {
+    font-size: clamp(0.7rem, 3vw, 0.85rem);
+  }
+
+  .timer-separator {
+    font-size: clamp(1.3rem, 7vw, 2rem);
+  }
+
+  .share-section {
+    padding: 15px;
+    margin: 30px 0 20px 0;
+  }
+
+  .contact-details {
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+}
+
