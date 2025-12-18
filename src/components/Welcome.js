@@ -1,8 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import './Welcome.css';
 
 const Welcome = () => {
+  const sectionRef = useRef(null);
+
+  // Use useLayoutEffect to add visible class immediately, before paint
+  useLayoutEffect(() => {
+    if (sectionRef.current) {
+      const elements = sectionRef.current.querySelectorAll('.scroll-animate');
+      elements.forEach((el) => {
+        el.classList.add('visible');
+      });
+      
+      // Ensure scroll position is at top on mobile
+      sectionRef.current.scrollTop = 0;
+    }
+    
+    // Ensure window scroll is at top
+    window.scrollTo(0, 0);
+    document.documentElement.scrollLeft = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollLeft = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
   useEffect(() => {
+    // Ensure page starts at the top on initial load
+    window.scrollTo(0, 0);
+    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+    document.documentElement.scrollLeft = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollLeft = 0;
+    document.body.scrollTop = 0;
+    
+    // Also scroll the welcome section itself to top if it has its own scroll
+    if (sectionRef.current) {
+      sectionRef.current.scrollTop = 0;
+    }
+
     const handleScroll = () => {
       const elements = document.querySelectorAll('.welcome-section .scroll-animate');
       const windowHeight = window.innerHeight;
@@ -18,11 +53,41 @@ const Welcome = () => {
       });
     };
 
+    // Check if elements are already visible on load - make all welcome section elements visible immediately
+    const checkInitialVisibility = () => {
+      const welcomeSection = document.querySelector('.welcome-section');
+      if (!welcomeSection) return;
+      
+      const rect = welcomeSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // If welcome section is in viewport (or very close to it), make all its scroll-animate elements visible
+      // This ensures content is visible when user first loads the page
+      if (rect.top < windowHeight + 100 && rect.bottom > -100) {
+        const elements = document.querySelectorAll('.welcome-section .scroll-animate');
+        elements.forEach((el) => {
+          el.classList.add('visible');
+        });
+      }
+    };
+    
+    // Force make welcome section elements visible on initial load
+    const forceInitialVisibility = () => {
+      const elements = document.querySelectorAll('.welcome-section .scroll-animate');
+      // Check if we're at the welcome section (scroll position is 0 or very close)
+      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+      if (scrollLeft < 50) {
+        elements.forEach((el) => {
+          el.classList.add('visible');
+        });
+      }
+    };
+
     // Use Intersection Observer for better performance
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.2
+      threshold: [0, 0.1, 0.2] // Multiple thresholds for better detection
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -41,8 +106,24 @@ const Welcome = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
     
-    // Initial check
-    handleScroll();
+    // Force visibility immediately for welcome section on initial load
+    forceInitialVisibility();
+    
+    // Immediate check - no delay for initial visibility
+    checkInitialVisibility();
+    
+    // Also check after a very short delay to catch any timing issues
+    setTimeout(() => {
+      forceInitialVisibility();
+      checkInitialVisibility();
+      handleScroll();
+    }, 50);
+    
+    // One more check after DOM is fully settled
+    setTimeout(() => {
+      forceInitialVisibility();
+      checkInitialVisibility();
+    }, 200);
     
     return () => {
       observer.disconnect();
@@ -52,7 +133,7 @@ const Welcome = () => {
   }, []);
 
   return (
-    <section className="welcome-section" data-section="welcome" id="welcome">
+    <section ref={sectionRef} className="welcome-section" data-section="welcome" id="welcome">
       <div className="welcome-container">
         <div className="content">
           <div className="text-section">

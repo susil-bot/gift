@@ -15,7 +15,7 @@ const ScrollToSection = () => {
 
   useEffect(() => {
     const hash = location.hash.replace('#', '');
-    if (hash) {
+    if (hash && hash !== 'welcome') {
       // Small delay to ensure DOM is ready
       setTimeout(() => {
         const section = document.querySelector(`[data-section="${hash}"]`);
@@ -34,14 +34,21 @@ const ScrollToSection = () => {
         }
       }, 150);
     } else {
-      // If no hash, default to welcome section
-      const welcomeSection = document.querySelector('[data-section="welcome"]');
-      if (welcomeSection) {
+      // If no hash or hash is 'welcome', scroll to top (welcome section)
+      setTimeout(() => {
         const currentScroll = window.scrollX || document.documentElement.scrollLeft;
-        if (currentScroll === 0) {
+        if (currentScroll !== 0) {
+          window.scrollTo({
+            left: 0,
+            top: 0,
+            behavior: 'instant' // Use instant for initial load to avoid animation
+          });
+        }
+        // Set hash if not already set
+        if (!hash) {
           window.history.replaceState(null, '', '#welcome');
         }
-      }
+      }, 50);
     }
   }, [location]);
 
@@ -176,6 +183,19 @@ const ScrollToSection = () => {
 };
 
 const AppContent = () => {
+  // Ensure page starts at top on initial load
+  useEffect(() => {
+    // Scroll to top immediately on mount
+    window.scrollTo(0, 0);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+    
+    // Also set hash to welcome if not already set
+    if (!window.location.hash || window.location.hash === '#') {
+      window.history.replaceState(null, '', '#welcome');
+    }
+  }, []);
+
   return (
     <>
       <div className="app-container">
