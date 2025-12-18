@@ -9,6 +9,7 @@ import LockedSection from "./components/LockedSection";
 import MobileScrollHint from "./components/MobileScrollHint";
 import ChatbotMenu from "./components/ChatbotMenu";
 import MusicPlayer from "./components/MusicPlayer";
+import Snackbar from "./components/Snackbar";
 
 const ScrollToSection = () => {
   const location = useLocation();
@@ -209,6 +210,7 @@ const AppContent = () => {
       <MobileScrollHint />
       <ChatbotMenu />
       <MusicPlayer />
+      <Snackbar />
       <ScrollToSection />
     </>
   );
